@@ -8,12 +8,21 @@ namespace Jukebox.Model.Players
     {
         private MediaPlayer _player;
 
+        private double _volume = 1.00;
+
         public RecordPlayer()
         {
             _player = new MediaPlayer
             {
-                Volume = 100
+                Volume = _volume
             };
+
+            _player.MediaEnded += _player_MediaEnded;
+        }
+
+        private void _player_MediaEnded(object sender, EventArgs e)
+        {
+            //send message to jukebox to start the next song
         }
 
         public void Play(Song song)
@@ -26,6 +35,24 @@ namespace Jukebox.Model.Players
         {
             _player.Open(new Uri(songPath));
             _player.Play();
+        }
+
+        public void Mute()
+        {
+            if(_player.IsMuted)
+                return;
+
+            _player.Volume = 0;
+            _player.IsMuted = true;
+        }
+
+        public void UnMute()
+        {
+            if (!_player.IsMuted)
+                return;
+
+            _player.Volume = _volume;
+            _player.IsMuted = false;
         }
     }
 }
