@@ -12,6 +12,7 @@ namespace Jukebox.Ninject
         {
             Kernel?.Bind<IJukeboxService>().To<JukeboxService>().InSingletonScope();
             Kernel?.Bind<IJukeboxFactory>().To<JukeboxFactory>().InSingletonScope();
+            Kernel?.Bind<IStartup>().To<Startup>().InSingletonScope();
         }
     }
 }

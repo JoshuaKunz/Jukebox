@@ -12,19 +12,13 @@ namespace Jukebox
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //create ninject module
             var kernel = new StandardKernel();
 
             kernel?.Load(Assembly.GetExecutingAssembly());
 
-            var splashVM = new SplashViewModel(kernel.Get<IJukeboxFactory>(),
-                                                kernel.Get<IJukeboxService>());
+            var startup = kernel.Get<IStartup>();// <--- has all of the dependencies
 
-            var splash = new SplashView(splashVM);
-
-            splash.Show();
-
-            (splash.DataContext as SplashViewModel).Load();
+            startup.Start();
         }
     }
 }
