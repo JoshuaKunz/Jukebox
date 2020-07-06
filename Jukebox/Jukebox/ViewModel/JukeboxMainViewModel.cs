@@ -1,27 +1,30 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Jukebox.Factory.Interface;
+using Jukebox.Model.Players;
 using Jukebox.Services.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace Jukebox.ViewModel
 {
     public class JukeboxMainViewModel : ViewModelBase
     {
-        private IJukeboxFactory _factory;
-        private IJukeboxService _service;
+        private readonly IJukeboxFactory _factory;
+        private readonly IJukeboxService _service;
+        private readonly IMessenger _messenger;
+
+        private readonly RecordPlayer _player;
 
         public JukeboxMainViewModel(IJukeboxService service,
-                                    IJukeboxFactory factory)
+                                    IJukeboxFactory factory,
+                                    IMessenger messenger)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
+            _player = new RecordPlayer(_messenger);
 
             SongsClickCommand = new RelayCommand(SongsClickCommandMethod);
             AlbumsClickCommand = new RelayCommand(AlbumsClickCommandMethod);
@@ -30,7 +33,9 @@ namespace Jukebox.ViewModel
 
         public void Load()
         {
-            SongsViewModel = new SongsViewModel(_service, _factory);
+            IsLoading = true;
+            SongsViewModel = new SongsViewModel(_service, _factory, _messenger);
+            IsLoading = false;
         }
 
         #region Properties
@@ -40,8 +45,14 @@ namespace Jukebox.ViewModel
             set => Set(ref _tabSelectedIndex, value);
         }
         private int _tabSelectedIndex;
-        #endregion
 
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => Set(ref _isLoading, value);
+        }
+        private bool _isLoading;
+        #endregion
 
         #region Commands
         public ICommand SongsClickCommand { get; set; }

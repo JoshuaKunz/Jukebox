@@ -1,14 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using Jukebox.Factory.Interface;
 using Jukebox.Services.Interfaces;
-using NAudio.MediaFoundation;
+using Jukebox.UI;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace Jukebox.ViewModel
@@ -17,6 +12,7 @@ namespace Jukebox.ViewModel
     {
         private readonly IJukeboxFactory _factory;
         private readonly IJukeboxService _service;
+        private readonly IMessenger _messenger;
 
         public Grid SongsGrid
         {
@@ -25,92 +21,36 @@ namespace Jukebox.ViewModel
         }
         private Grid _songsGrid;
 
-        
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set => Set(ref _isLoading, value);
+        }
+        private bool _isLoading;
 
-        public SongsViewModel(IJukeboxService service, IJukeboxFactory factory)
+        public SongsViewModel(IJukeboxService service,
+                                IJukeboxFactory factory,
+                                IMessenger messenger)
         {
             _service = service ?? throw new ArgumentNullException(nameof(service));
             _factory = factory ?? throw new ArgumentNullException(nameof(factory));
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
             Setup();
         }
 
-        private void Setup()
+        private async void Setup()
         {
-            var grid = new Grid();
+            IsLoading = true;
 
-            ColumnDefinition col0 = new ColumnDefinition();
-            ColumnDefinition col1 = new ColumnDefinition();
-            ColumnDefinition col2 = new ColumnDefinition();
+            SongsGrid = new SongsGrid(await _service.GetAllSongs());
 
-            col0.Width = new GridLength(80, GridUnitType.Star);
-            col1.Width = new GridLength(80, GridUnitType.Star);
-            col2.Width = new GridLength(80, GridUnitType.Star);
+            IsLoading = false;
+        }
 
-            grid.ColumnDefinitions.Add(col0);
-            grid.ColumnDefinitions.Add(col1);
-            grid.ColumnDefinitions.Add(col2);
-
-            var columnCounter = 0;
-            var rowCounter = 0;
-            for (var i = 0; i < 10; i++)
-            {
-                switch (columnCounter)
-                {
-                    case 0:
-                        {
-                            var row = new RowDefinition();
-                            row.Height = new GridLength(80, GridUnitType.Auto);
-                            grid.RowDefinitions.Add(row);
-
-                            var btn = new Button
-                            {
-                                Content = $"Test-{i}"
-                            };
-
-                            grid.Children.Add(btn);
-
-                            Grid.SetRow(btn, rowCounter);
-                            Grid.SetColumn(btn, columnCounter);
-
-                            columnCounter++;
-                            break;
-                        }
-                    case 1:
-                        {
-                            var btn = new Button
-                            {
-                                Content = $"Test-{i}"
-                            };
-
-                            grid.Children.Add(btn);
-
-                            Grid.SetRow(btn, rowCounter);
-                            Grid.SetColumn(btn, columnCounter);
-
-                            columnCounter++;
-                            break;
-                        }
-                    case 2:
-                        {
-                            var btn = new Button
-                            {
-                                Content = $"Test-{i}"
-                            };
-
-                            grid.Children.Add(btn);
-
-                            Grid.SetRow(btn, rowCounter);
-                            Grid.SetColumn(btn, columnCounter);
-
-                            columnCounter = 0;
-                            rowCounter++;
-                            break;
-                        }
-                }
-            }
-
-            SongsGrid = grid;
+        public void Refresh()
+        {
+            Setup();
         }
     }
 }

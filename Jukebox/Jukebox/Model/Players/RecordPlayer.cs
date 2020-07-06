@@ -1,4 +1,5 @@
-﻿using Jukebox.Model.Audio;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Jukebox.Model.Audio;
 using System;
 using System.Windows.Media;
 
@@ -7,11 +8,13 @@ namespace Jukebox.Model.Players
     public class RecordPlayer
     {
         private MediaPlayer _player;
-
+        private readonly IMessenger _messenger;
         private double _volume = 1.00;
 
-        public RecordPlayer()
+        public RecordPlayer(IMessenger messenger)
         {
+            _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
+
             _player = new MediaPlayer
             {
                 Volume = _volume
@@ -20,9 +23,15 @@ namespace Jukebox.Model.Players
             _player.MediaEnded += _player_MediaEnded;
         }
 
+        public bool IsPlaying
+        {
+            get => _player.HasAudio;
+        }
+
         private void _player_MediaEnded(object sender, EventArgs e)
         {
             //send message to jukebox to start the next song
+            //_messenger.
         }
 
         public void Play(Song song)
@@ -39,7 +48,7 @@ namespace Jukebox.Model.Players
 
         public void Mute()
         {
-            if(_player.IsMuted)
+            if (_player.IsMuted)
                 return;
 
             _player.Volume = 0;
@@ -54,5 +63,9 @@ namespace Jukebox.Model.Players
             _player.Volume = _volume;
             _player.IsMuted = false;
         }
+
+        #region Messages
+
+        #endregion
     }
 }
