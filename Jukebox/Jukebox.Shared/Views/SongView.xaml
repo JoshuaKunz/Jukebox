@@ -1,0 +1,51 @@
+﻿<Button x:Class="Jukebox.Shared.Views.SongView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Jukebox.Shared.Views"
+             xmlns:vm="clr-namespace:Jukebox.Shared.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="220"
+             d:DesignWidth="200"
+             Foreground="White"
+             d:DataContext="{d:DesignInstance vm:SongViewModel}">
+
+    <Button.Background>
+
+        <LinearGradientBrush StartPoint="0.5,0"
+                             EndPoint="0.5,1">
+
+            <GradientStop Color="#FF5E5E5E" Offset="0" />
+            <GradientStop Color="#FF040404" Offset="1" />
+        </LinearGradientBrush>
+
+    </Button.Background>
+
+    <Button.Template>
+        <ControlTemplate TargetType="Button">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0" Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CoverImage}"/>
+
+                <TextBlock Grid.Row="1"
+                   FontFamily="Chiller"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Title, FallbackValue='Title Missing'}"/>
+
+                <TextBlock Grid.Row="2"
+                   FontFamily="Chiller"
+                   FontSize="14"
+                   FontWeight="Light"
+                   Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Year, FallbackValue='No Year'}"/>
+            </Grid>
+        </ControlTemplate>
+    </Button.Template>
+</Button>

@@ -2,9 +2,12 @@
 using GalaSoft.MvvmLight.Command;
 using Jukebox.Albums.ViewModels;
 using Jukebox.NowPlaying.ViewModels;
+using Jukebox.Shared.Classes;
+using Jukebox.Shared.ViewModels;
 using Jukebox.Songs.ViewModels;
 using Jukebox.Utility.ViewModels;
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace Jukebox.ViewModels
@@ -14,12 +17,14 @@ namespace Jukebox.ViewModels
         public JukeboxViewModel(SongsPaneViewModel songsPaneViewModel,
             AlbumsPaneViewModel albumsPaneViewModel,
             NowPlayingPaneViewModel nowPlayingPaneViewModel,
-            UtilityPaneViewModel utilityPaneViewModel)
+            UtilityPaneViewModel utilityPaneViewModel,
+            RecordPlayer player)
         {
             SongsPaneViewModel = songsPaneViewModel ?? throw new ArgumentNullException(nameof(songsPaneViewModel));
             AlbumsPaneViewModel = albumsPaneViewModel ?? throw new ArgumentNullException(nameof(songsPaneViewModel));
             NowPlayingPaneViewModel = nowPlayingPaneViewModel ?? throw new ArgumentNullException(nameof(nowPlayingPaneViewModel));
             UtilityPaneViewModel = utilityPaneViewModel ?? throw new ArgumentNullException(nameof(utilityPaneViewModel));
+            Player = player ?? throw new ArgumentNullException(nameof(player));
 
             SongsButtonCommand = new RelayCommand(SongsButtonCommandMethod);
             AlbumsButtonCommand = new RelayCommand(AlbumsButtonCommandMethod);
@@ -27,6 +32,15 @@ namespace Jukebox.ViewModels
         }
 
         #region Properties
+        public RecordPlayer Player { get; }
+
+        public ObservableCollection<SongViewModel> PlayList
+        {
+            get => _playList;
+            set => Set(ref _playList, value);
+        }
+        private ObservableCollection<SongViewModel> _playList = new ObservableCollection<SongViewModel>();
+
         public int SelectedIndex
         {
             get => _selectedIndex;

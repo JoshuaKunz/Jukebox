@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using Jukebox.Factory;
-using Jukebox.Factory.Interface;
-using Jukebox.Services;
-using Jukebox.Services.Interface;
+using Jukebox.Shared.Factory;
+using Jukebox.Shared.Factory.Interface;
+using Jukebox.Shared.Services;
+using Jukebox.Shared.Services.Interface;
 using Ninject.Modules;
 
 namespace Jukebox.Ninject

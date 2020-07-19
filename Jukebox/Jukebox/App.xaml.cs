@@ -1,9 +1,7 @@
 ﻿using Jukebox.Ninject;
-using Jukebox.Songs.ViewModels;
 using Jukebox.ViewModels;
 using Jukebox.Views;
 using Ninject;
-using System;
 using System.Windows;
 
 namespace Jukebox

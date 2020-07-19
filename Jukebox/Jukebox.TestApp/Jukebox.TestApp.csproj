@@ -4,16 +4,10 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>2020.0.0.0</AssemblyVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Josh Kunz</Authors>
-    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
-    <PackageReference Include="NAudio" Version="1.10.0" />
-    <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
     <PackageReference Include="TagLibSharp" Version="2.2.0" />
   </ItemGroup>
 
@@ -24,6 +18,7 @@
     <ProjectReference Include="..\Jukebox.Shared\Jukebox.Shared.csproj" />
     <ProjectReference Include="..\Jukebox.Songs\Jukebox.Songs.csproj" />
     <ProjectReference Include="..\Jukebox.Utility\Jukebox.Utility.csproj" />
+    <ProjectReference Include="..\Jukebox\Jukebox.csproj" />
   </ItemGroup>
 
 </Project>

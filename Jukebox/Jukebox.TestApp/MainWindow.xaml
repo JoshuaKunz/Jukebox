@@ -1,0 +1,20 @@
+﻿<Window x:Class="Jukebox.TestApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Jukebox.TestApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid x:Name="MyGrid">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image x:Name="MetImage" Grid.Column="0" Source="{Binding MyImageSource}" Stretch="UniformToFill"/>
+
+        <Image x:Name="MetImage2" Grid.Column="1" Source="{Binding MyImageSource}" Stretch="Fill"/>
+    </Grid>
+</Window>

@@ -1,16 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Media;
 
 namespace Jukebox.Shared.Models
 {
     public class SongModel
     {
         public string Artist { get; set; }
+        public string Album { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
         public short TrackNumber { get; set; }
-        public TimeSpan Length { get; set; }
-        public BitmapImage CoverImage { get; set; }
+        public string Length { get; set; }
     }
 }

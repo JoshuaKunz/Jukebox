@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:Jukebox.Views"
         xmlns:vm="clr-namespace:Jukebox.ViewModels"
         xmlns:b="clr-namespace:Jukebox.Shared.Controls.Buttons;assembly=Jukebox.Shared"
+        xmlns:spv="clr-namespace:Jukebox.Songs.Views;assembly=Jukebox.Songs"
+        xmlns:apv="clr-namespace:Jukebox.Albums.Views;assembly=Jukebox.Albums"
+        xmlns:upv="clr-namespace:Jukebox.Utility.Views;assembly=Jukebox.Utility"
+        xmlns:nppv="clr-namespace:Jukebox.NowPlaying.Views;assembly=Jukebox.NowPlaying"
         mc:Ignorable="d"
         Title="JukeboxView"
         Height="800"
@@ -52,18 +56,19 @@
             <TabControl Grid.Row="0"
                         Grid.Column="1"
                         Background="Transparent"
-                        BorderBrush="Transparent">
+                        BorderBrush="Transparent"
+                        SelectedIndex="{Binding SelectedIndex}">
 
                 <TabItem Header="Songs">
-
+                    <spv:SongsPaneView DataContext="{Binding SongsPaneViewModel}"/>
                 </TabItem>
 
                 <TabItem Header="Albums">
-
+                    <apv:AlbumsPaneView DataContext="{Binding AlbumsPaneViewModel}"/>
                 </TabItem>
 
                 <TabItem Header="Now Playing">
-
+                    <nppv:NowPlayingPaneView DataContext="{Binding NowPlayingPaneViewModel}"/>
                 </TabItem>
 
             </TabControl>
@@ -71,7 +76,7 @@
 
         <Grid Grid.Row="1"
               Height="100">
-
+            <upv:UtilityPaneView DataContext="{Binding UtilityPaneViewModel}"/>
         </Grid>
     </Grid>
 </Window>
