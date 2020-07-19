@@ -1,9 +1,9 @@
-﻿using Jukebox.Factory.Interface;
-using Jukebox.Services.Interfaces;
-using Jukebox.View;
-using Jukebox.ViewModel;
+﻿using Jukebox.Ninject;
+using Jukebox.Songs.ViewModels;
+using Jukebox.ViewModels;
+using Jukebox.Views;
 using Ninject;
-using System.Reflection;
+using System;
 using System.Windows;
 
 namespace Jukebox
@@ -12,13 +12,14 @@ namespace Jukebox
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var kernel = new StandardKernel();
+            var kernel = new StandardKernel(new JukeboxNinjectModule());
 
-            kernel?.Load(Assembly.GetExecutingAssembly());
+            var window = new JukeboxView
+            {
+                DataContext = kernel?.Get<JukeboxViewModel>()
+            };
 
-            var startup = kernel.Get<IStartup>();// <--- has all of the dependencies
-
-            startup.Start();
+            window.Show();
         }
     }
 }

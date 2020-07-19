@@ -14,10 +14,20 @@
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="NAudio" Version="1.10.0" />
     <PackageReference Include="Ninject" Version="3.3.4" />
+    <PackageReference Include="TagLibSharp" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UserControls\ViewModel\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jukebox.Albums\Jukebox.Albums.csproj" />
+    <ProjectReference Include="..\Jukebox.Images\Jukebox.Images.csproj" />
+    <ProjectReference Include="..\Jukebox.NowPlaying\Jukebox.NowPlaying.csproj" />
+    <ProjectReference Include="..\Jukebox.Shared\Jukebox.Shared.csproj" />
+    <ProjectReference Include="..\Jukebox.Songs\Jukebox.Songs.csproj" />
+    <ProjectReference Include="..\Jukebox.Utility\Jukebox.Utility.csproj" />
   </ItemGroup>
 
 </Project>
