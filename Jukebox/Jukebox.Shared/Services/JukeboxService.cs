@@ -20,13 +20,13 @@ namespace Jukebox.Shared.Services
 
                 foreach (var folder in Directory.GetDirectories(musicFolder))
                 {
-                    var ext = new List<string> { "mp3" };
-                    var files = Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories).Where(s => ext.Contains(Path.GetExtension(s).ToLowerInvariant()));
+                    //var ext = new List<string> { "mp3" };
+                    var files = Directory.EnumerateFiles(folder, "*.mp3", SearchOption.AllDirectories);
+                    songs.AddRange(ConvertFilePathsToSongModel(files));
                 }
 
                 return songs.AsEnumerable();
             });
-
         }
 
         private IEnumerable<SongModel> ConvertFilePathsToSongModel(IEnumerable<string> paths)
@@ -35,7 +35,17 @@ namespace Jukebox.Shared.Services
 
             foreach (var path in paths)
             {
+                var file = TagLib.File.Create(path).Tag;
 
+                songModels.Add(new SongModel
+                {
+                    Artist = file.FirstAlbumArtist,
+                    Title = file.Title,
+                    TrackNumber = (short)file.Track,
+                    Path = path,
+                    Year = (short)file.Year,
+                    Album = file.Album
+                });
             }
 
             return songModels.AsEnumerable();

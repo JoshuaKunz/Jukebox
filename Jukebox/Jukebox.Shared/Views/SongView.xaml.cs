@@ -1,12 +1,10 @@
-﻿using System.DirectoryServices.ActiveDirectory;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Jukebox.Shared.Views
 {
-    public partial class SongView : Button
+    public partial class SongView : UserControl
     {
         public SongView()
         {

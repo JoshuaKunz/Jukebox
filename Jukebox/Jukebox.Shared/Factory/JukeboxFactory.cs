@@ -26,8 +26,8 @@ namespace Jukebox.Shared.Factory
             Album = model.Album,
             CoverImage = GetImageFromMp3(model.Path),
             Path = model.Path,
-            Length = model.Length,
             TrackNumber = model.TrackNumber,
+            Year = model.Year,
             Title = model.Title
         };
 
@@ -35,22 +35,32 @@ namespace Jukebox.Shared.Factory
 
         public ImageSource GetImageFromMp3(string path)
         {
-            var f = new TagLib.Mpeg.AudioFile(path);
+            var bm = new BitmapImage();
 
-            if (f?.Tag?.Pictures[0] == null) return null;
+            try
+            {
+                var f = new TagLib.Mpeg.AudioFile(path);
 
-            TagLib.IPicture pic = f?.Tag?.Pictures[0];
+                if (!f.Tag.Pictures.Any()) return null;
 
-            var ms = new MemoryStream(pic.Data.Data);
-            ms.Seek(0, SeekOrigin.Begin);
+                TagLib.IPicture pic = f?.Tag?.Pictures[0];
 
-            // ImageSource for System.Windows.Controls.Image
-            BitmapImage bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.StreamSource = ms;
-            bitmap.EndInit();
+                var ms = new MemoryStream(pic.Data.Data);
+                ms.Seek(0, SeekOrigin.Begin);
 
-            return bitmap;
+                // ImageSource for System.Windows.Controls.Image
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.StreamSource = ms;
+                bitmap.EndInit();
+
+                return bitmap;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.ToString());
+                return bm;
+            }
         }
     }
 }

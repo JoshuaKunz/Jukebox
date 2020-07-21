@@ -8,7 +8,7 @@ namespace Jukebox.Shared.Models
         public string Album { get; set; }
         public string Title { get; set; }
         public string Path { get; set; }
+        public short Year { get; set; }
         public short TrackNumber { get; set; }
-        public string Length { get; set; }
     }
 }

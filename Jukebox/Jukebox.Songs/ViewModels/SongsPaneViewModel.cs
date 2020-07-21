@@ -5,7 +5,9 @@ using Jukebox.Shared.Services.Interface;
 using Jukebox.Shared.ViewModels;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -48,6 +50,14 @@ namespace Jukebox.Songs.ViewModels
             try
             {
                 IsLoading = true;
+
+                var songs = _factory.ConvertSongModels(await _service.GetAllSongs()).ToList();
+
+                songs.ForEach(x => Songs.Add(x));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
             finally
             {

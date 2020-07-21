@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -56,19 +57,12 @@ namespace Jukebox.Shared.ViewModels
         }
         private short _trackNumber;
 
-        public string Year
+        public short Year
         {
             get => _year;
             set => Set(ref _year, value);
         }
-        private string _year;
-
-        public string Length
-        {
-            get => _length;
-            set => Set(ref _length, value);
-        }
-        private string _length;
+        private short _year;
 
         public ImageSource CoverImage
         {
@@ -90,6 +84,7 @@ namespace Jukebox.Shared.ViewModels
         public void AddToPlaylistCommandMethod()
         {
             //Send message to the playlist adding this song.
+            MessageBox.Show("adding to playlist");
         }
         #endregion
     }

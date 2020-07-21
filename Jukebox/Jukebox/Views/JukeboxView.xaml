@@ -59,15 +59,15 @@
                         BorderBrush="Transparent"
                         SelectedIndex="{Binding SelectedIndex}">
 
-                <TabItem Header="Songs">
+                <TabItem Header="Songs" Visibility="Collapsed">
                     <spv:SongsPaneView DataContext="{Binding SongsPaneViewModel}"/>
                 </TabItem>
 
-                <TabItem Header="Albums">
+                <TabItem Header="Albums" Visibility="Collapsed">
                     <apv:AlbumsPaneView DataContext="{Binding AlbumsPaneViewModel}"/>
                 </TabItem>
 
-                <TabItem Header="Now Playing">
+                <TabItem Header="Now Playing" Visibility="Collapsed">
                     <nppv:NowPlayingPaneView DataContext="{Binding NowPlayingPaneViewModel}"/>
                 </TabItem>
 
