@@ -22,7 +22,7 @@
     <UserControl.Style>
         <Style TargetType="UserControl">
             <Style.Triggers>
-                <Trigger Property="IsKeyboardFocusWithin"  Value="True">
+                <Trigger Property="IsMouseOver"  Value="True">
                     <Trigger.Setters>
                         <Setter Property="FontWeight" Value="UltraBold"/>
                         <Setter Property="Foreground" Value="LightGreen"/>
