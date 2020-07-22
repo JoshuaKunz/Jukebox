@@ -8,6 +8,8 @@ using System.Windows.Media.Imaging;
 using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using Jukebox.Shared.Art;
+using System.Windows;
 
 namespace Jukebox.Shared.Factory
 {
@@ -20,47 +22,44 @@ namespace Jukebox.Shared.Factory
             _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
         }
 
-        public SongViewModel ConvertSongModel(SongModel model) => new SongViewModel(_messenger)
+        public SongViewModel ConvertSongModel(SongModel model)
         {
-            Artist = model.Artist,
-            Album = model.Album,
-            CoverImage = GetImageFromMp3(model.Path),
-            Path = model.Path,
-            TrackNumber = model.TrackNumber,
-            Year = model.Year,
-            Title = model.Title
-        };
+            GetImageFromMp3(model.Path, model.Album);
+
+            AlbumArtCollection.SharedAlbumArt.TryGetValue(model.Album, out var albumArt);
+
+            return new SongViewModel(_messenger)
+            {
+                Artist = model.Artist,
+                Album = model.Album,
+                CoverImage = albumArt ?? new BitmapImage(),
+                Path = model.Path,
+                TrackNumber = model.TrackNumber,
+                Year = model.Year,
+                Title = model.Title
+            };
+        }
 
         public IEnumerable<SongViewModel> ConvertSongModels(IEnumerable<SongModel> models) => models.Select(ConvertSongModel);
 
-        public ImageSource GetImageFromMp3(string path)
+        public void GetImageFromMp3(string path, string albumName)
         {
-            var bm = new BitmapImage();
+            var f = new TagLib.Mpeg.AudioFile(path);
 
-            try
-            {
-                var f = new TagLib.Mpeg.AudioFile(path);
+            if (!f.Tag.Pictures.Any()) return;
 
-                if (!f.Tag.Pictures.Any()) return null;
+            TagLib.IPicture pic = f?.Tag?.Pictures[0];
 
-                TagLib.IPicture pic = f?.Tag?.Pictures[0];
+            var ms = new MemoryStream(pic.Data.Data);
+            ms.Seek(0, SeekOrigin.Begin);
 
-                var ms = new MemoryStream(pic.Data.Data);
-                ms.Seek(0, SeekOrigin.Begin);
+            // ImageSource for System.Windows.Controls.Image
+            BitmapImage bitmap = new BitmapImage();
+            bitmap.BeginInit();
+            bitmap.StreamSource = ms;
+            bitmap.EndInit();
 
-                // ImageSource for System.Windows.Controls.Image
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.StreamSource = ms;
-                bitmap.EndInit();
-
-                return bitmap;
-            }
-            catch (Exception ex)
-            {
-                System.Windows.MessageBox.Show(ex.ToString());
-                return bm;
-            }
+            AlbumArtCollection.SharedAlbumArt[albumName] = bitmap;
         }
     }
 }

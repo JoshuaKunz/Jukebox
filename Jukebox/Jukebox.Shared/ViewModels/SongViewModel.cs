@@ -19,6 +19,11 @@ namespace Jukebox.Shared.ViewModels
             _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
             AddToPlaylistCommand = new RelayCommand(AddToPlaylistCommandMethod);
+
+            TestCommand = new RelayCommand(() =>
+            {
+                MessageBox.Show("got focus command works");
+            });
         }
 
         #region Properties
@@ -70,10 +75,19 @@ namespace Jukebox.Shared.ViewModels
             set => Set(ref _coverImage, value);
         }
         private ImageSource _coverImage;
+
+        public bool HasFocus
+        {
+            get => _hasFocus;
+            set => Set(ref _hasFocus, value);
+        }
+        private bool _hasFocus;
         #endregion
 
         #region Commands
         public ICommand AddToPlaylistCommand { get; set; }
+
+        public ICommand TestCommand { get; set; }
         #endregion
 
         #region Methods

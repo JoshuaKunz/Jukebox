@@ -15,9 +15,9 @@
 
         <ScrollViewer PanningMode="VerticalOnly">
 
-            <ScrollViewer.Background>
-                <ImageBrush ImageSource="{StaticResource MetBlackWhiteImageKey}" Opacity="0.25"/>
-            </ScrollViewer.Background>
+            <!--<ScrollViewer.Background>
+                <ImageBrush ImageSource="{StaticResource MetSnakeImageKey}" Opacity="0.25"/>
+            </ScrollViewer.Background>-->
 
             <WrapPanel MaxWidth="{Binding ActualWidth, ElementName=SongsGrid}" Orientation="Horizontal">
 

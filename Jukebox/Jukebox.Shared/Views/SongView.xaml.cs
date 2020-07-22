@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Jukebox.Shared.Views
 {
-    public partial class SongView : UserControl
+    public partial class SongView : Button
     {
         public SongView()
         {
@@ -39,6 +39,11 @@ namespace Jukebox.Shared.Views
         {
             get => (ImageSource)GetValue(ImageProperty);
             set => SetValue(ImageProperty, value);
+        }
+
+        private void btn_GotFocus(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
