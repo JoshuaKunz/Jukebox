@@ -2,11 +2,13 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Jukebox.Shared.Classes;
 
 namespace Jukebox.Shared.ViewModels
 {
@@ -20,10 +22,8 @@ namespace Jukebox.Shared.ViewModels
 
             AddToPlaylistCommand = new RelayCommand(AddToPlaylistCommandMethod);
 
-            TestCommand = new RelayCommand(() =>
-            {
-                MessageBox.Show("got focus command works");
-            });
+            GotFocusCommand = new RelayCommand(GotFocusCommandMethod);
+            LostFocusCommand = new RelayCommand(LostFocusCommandMethod);
         }
 
         #region Properties
@@ -76,29 +76,38 @@ namespace Jukebox.Shared.ViewModels
         }
         private ImageSource _coverImage;
 
-        public bool HasFocus
+        public Visibility PlayButtonVisability
         {
-            get => _hasFocus;
-            set => Set(ref _hasFocus, value);
+            get => _playButtonVisability;
+            set => Set(ref _playButtonVisability, value);
         }
-        private bool _hasFocus;
+        private Visibility _playButtonVisability = Visibility.Collapsed;
         #endregion
 
         #region Commands
         public ICommand AddToPlaylistCommand { get; set; }
 
-        public ICommand TestCommand { get; set; }
+        public ICommand LostFocusCommand { get; set; }
+        public ICommand GotFocusCommand { get; set; }
         #endregion
 
         #region Methods
+        public void GotFocusCommandMethod()
+        {
+            PlayButtonVisability = Visibility.Visible;
+        }
 
+        public void LostFocusCommandMethod()
+        {
+            PlayButtonVisability = Visibility.Collapsed;
+        }
         #endregion
 
         #region Command Methods
         public void AddToPlaylistCommandMethod()
         {
             //Send message to the playlist adding this song.
-            MessageBox.Show("adding to playlist");
+            _messenger.Send(this, Messages.AddSongToPlaylist);
         }
         #endregion
     }

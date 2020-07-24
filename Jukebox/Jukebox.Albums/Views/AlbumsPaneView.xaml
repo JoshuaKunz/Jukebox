@@ -6,8 +6,6 @@
              xmlns:local="clr-namespace:Jukebox.Albums.Views"
              xmlns:vm="clr-namespace:Jukebox.Albums.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vm:AlbumsPaneViewModel}">
     <Grid>
 

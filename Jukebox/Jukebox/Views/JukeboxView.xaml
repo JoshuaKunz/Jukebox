@@ -15,6 +15,7 @@
         Height="800"
         Width="1600"
         WindowState="Maximized"
+        Icon="{StaticResource MetSnakeImageKey}"
         Background="{StaticResource MetallicaBlack}"
         d:DataContext="{d:DesignInstance Type=vm:JukeboxViewModel}">
     <Grid>
@@ -35,7 +36,8 @@
 
             <StackPanel Grid.Row="0"
                         Grid.Column="0"
-                        Width="Auto">
+                        Width="200">
+
 
                 <b:MenuButton Title="Songs"
                               Width="auto"

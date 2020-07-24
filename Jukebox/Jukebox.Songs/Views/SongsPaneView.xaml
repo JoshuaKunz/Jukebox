@@ -15,9 +15,9 @@
 
         <ScrollViewer PanningMode="VerticalOnly">
 
-            <!--<ScrollViewer.Background>
+            <ScrollViewer.Background>
                 <ImageBrush ImageSource="{StaticResource MetSnakeImageKey}" Opacity="0.25"/>
-            </ScrollViewer.Background>-->
+            </ScrollViewer.Background>
 
             <WrapPanel MaxWidth="{Binding ActualWidth, ElementName=SongsGrid}" Orientation="Horizontal">
 
@@ -27,9 +27,9 @@
 
                         <DataTemplate>
 
-                            <sv:SongView Image="{Binding CoverImage}"
-                                         Year="{Binding Year}"
-                                         Title="{Binding Title}"/>
+                            <sv:SongView    Image="{Binding CoverImage}"
+                                            Year="{Binding Year}"
+                                            Title="{Binding Title}"/>
 
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Jukebox.Images.Images">
+    <DrawingImage x:Key="PlayBtnDrawingImageKey">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V260.03501 H225.313 V0 H0 Z">
+                <DrawingGroup.Transform>
+                    <TranslateTransform X="1.5137407993748297E-09" Y="2.6616714474819725E-12" />
+                </DrawingGroup.Transform>
+                <DrawingGroup Opacity="1">
+                    <GeometryDrawing Brush="#FF1E1E1E" Geometry="F1 M225.313,260.03501z M0,0z M0.05773346,0.00027801592C0.40905246,-0.21854798 225.31146,128.8137 225.31293,129.23492 225.31393,129.65609 1.3170215,260.2513 0.96422546,260.03494 0.66960346,259.85428 -0.23562154,0.18300202 0.05773346,0.00027801592z" />
+                </DrawingGroup>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

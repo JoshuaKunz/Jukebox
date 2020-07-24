@@ -40,10 +40,5 @@ namespace Jukebox.Shared.Views
             get => (ImageSource)GetValue(ImageProperty);
             set => SetValue(ImageProperty, value);
         }
-
-        private void btn_GotFocus(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
