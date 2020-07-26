@@ -10,5 +10,7 @@ namespace Jukebox.Shared.Factory.Interface
 
         SongViewModel ConvertSongModel(SongModel model);
         IEnumerable<SongViewModel> ConvertSongModels(IEnumerable<SongModel> models);
+
+        AlbumViewModel ConvertSongsToAlbum(List<SongViewModel> songs);
     }
 }

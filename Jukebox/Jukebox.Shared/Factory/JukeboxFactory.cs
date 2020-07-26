@@ -1,15 +1,14 @@
-﻿using Jukebox.Shared.Factory.Interface;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Jukebox.Shared.Art;
+using Jukebox.Shared.Extensions;
+using Jukebox.Shared.Factory.Interface;
 using Jukebox.Shared.Models;
 using Jukebox.Shared.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Linq;
-using GalaSoft.MvvmLight.Messaging;
-using System;
-using Jukebox.Shared.Art;
-using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Jukebox.Shared.Factory
 {
@@ -41,6 +40,21 @@ namespace Jukebox.Shared.Factory
         }
 
         public IEnumerable<SongViewModel> ConvertSongModels(IEnumerable<SongModel> models) => models.Select(ConvertSongModel);
+
+        public AlbumViewModel ConvertSongsToAlbum(List<SongViewModel> songs)
+        {
+            var firstSong = songs?.FirstOrDefault();
+
+            return new AlbumViewModel(_messenger)
+            {
+                Songs = songs.ToObservableCollection(),
+                AlbumArtist = firstSong?.Artist,
+                AlbumTitle = firstSong?.Album,
+                AlbumYear = firstSong?.Year ?? 0,
+                NumberOfTracks = songs?.Count ?? 0,
+                AlbumCover = firstSong?.CoverImage
+            };
+        }
 
         public void GetImageFromMp3(string path, string albumName)
         {

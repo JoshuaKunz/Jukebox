@@ -19,11 +19,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Jukebox.Albums\Jukebox.Albums.csproj" />
+    <ProjectReference Include="..\Jukebox.Artists\Jukebox.Artists.csproj" />
     <ProjectReference Include="..\Jukebox.Images\Jukebox.Images.csproj" />
     <ProjectReference Include="..\Jukebox.NowPlaying\Jukebox.NowPlaying.csproj" />
     <ProjectReference Include="..\Jukebox.Shared\Jukebox.Shared.csproj" />
     <ProjectReference Include="..\Jukebox.Songs\Jukebox.Songs.csproj" />
     <ProjectReference Include="..\Jukebox.Utility\Jukebox.Utility.csproj" />
+    <ProjectReference Include="..\Jukebox.ViewAlbum\Jukebox.ViewAlbum.csproj" />
   </ItemGroup>
 
 </Project>

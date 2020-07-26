@@ -13,4 +13,10 @@
     <PackageReference Include="WpfAnimatedGif" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Jukebox.Images\Jukebox.Images.csproj" />
+    <ProjectReference Include="..\Jukebox.NowPlaying\Jukebox.NowPlaying.csproj" />
+    <ProjectReference Include="..\Jukebox.Utility\Jukebox.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

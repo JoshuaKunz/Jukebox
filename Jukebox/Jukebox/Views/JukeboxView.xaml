@@ -10,11 +10,13 @@
         xmlns:apv="clr-namespace:Jukebox.Albums.Views;assembly=Jukebox.Albums"
         xmlns:upv="clr-namespace:Jukebox.Utility.Views;assembly=Jukebox.Utility"
         xmlns:nppv="clr-namespace:Jukebox.NowPlaying.Views;assembly=Jukebox.NowPlaying"
+        xmlns:vapv="clr-namespace:Jukebox.ViewAlbum.Views;assembly=Jukebox.ViewAlbum"
         mc:Ignorable="d"
         Title="JukeboxView"
         Height="800"
         Width="1600"
         WindowState="Maximized"
+        WindowStyle="None"
         Icon="{StaticResource MetSnakeImageKey}"
         Background="{StaticResource MetallicaBlack}"
         d:DataContext="{d:DesignInstance Type=vm:JukeboxViewModel}">
@@ -40,17 +42,27 @@
 
 
                 <b:MenuButton Title="Songs"
-                              Width="auto"
+                              Width="Auto"
                               Height="100"
                               Command="{Binding SongsButtonCommand}"/>
 
                 <b:MenuButton Title="Albums"
-                              Width="auto"
+                              Width="Auto"
                               Height="100"
                               Command="{Binding AlbumsButtonCommand}"/>
 
+                <b:MenuButton Title="Artists"
+                              Width="Auto"
+                              Height="100"
+                              Command="{Binding ArtistsButtonCommand}"/>
+
+                <b:MenuButton Title="Playlist"
+                              Width="Auto"
+                              Height="100"
+                              Command="{Binding PlaylistButtonCommand}"/>
+
                 <b:MenuButton Title="Now Playing"
-                              Width="auto"
+                              Width="Auto"
                               Height="100"
                               Command="{Binding NowPlayingButtonCommand}"/>
             </StackPanel>
@@ -61,16 +73,38 @@
                         BorderBrush="Transparent"
                         SelectedIndex="{Binding SelectedIndex}">
 
-                <TabItem Header="Songs" Visibility="Collapsed">
+                <TabItem Header="Songs"
+                         Visibility="Collapsed">
                     <spv:SongsPaneView DataContext="{Binding SongsPaneViewModel}"/>
                 </TabItem>
 
-                <TabItem Header="Albums" Visibility="Collapsed">
+                <TabItem Header="Albums"
+                         Visibility="Collapsed">
                     <apv:AlbumsPaneView DataContext="{Binding AlbumsPaneViewModel}"/>
                 </TabItem>
 
-                <TabItem Header="Now Playing" Visibility="Collapsed">
+                <TabItem Header="Artists"
+                         Visibility="Collapsed">
+                    <Border Background="Black">
+
+                    </Border>
+                </TabItem>
+
+                <TabItem Header="Playlist"
+                         Visibility="Collapsed">
+                    <Border Background="White">
+
+                    </Border>
+                </TabItem>
+
+                <TabItem Header="Now Playing"
+                         Visibility="Collapsed">
                     <nppv:NowPlayingPaneView DataContext="{Binding NowPlayingPaneViewModel}"/>
+                </TabItem>
+
+                <TabItem Header="View Album"
+                         Visibility="Collapsed">
+                    <vapv:ViewAlbumPaneView DataContext="{Binding ViewAlbumPaneViewModel}"/>
                 </TabItem>
 
             </TabControl>

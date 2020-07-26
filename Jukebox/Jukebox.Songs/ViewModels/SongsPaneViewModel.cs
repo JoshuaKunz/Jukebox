@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Jukebox.Shared.Classes;
+using Jukebox.Shared.Extensions;
 using Jukebox.Shared.Factory.Interface;
 using Jukebox.Shared.Services.Interface;
 using Jukebox.Shared.ViewModels;
@@ -54,6 +56,8 @@ namespace Jukebox.Songs.ViewModels
                 var songs = _factory.ConvertSongModels(await _service.GetAllSongs()).ToList();
 
                 songs.ForEach(x => Songs.Add(x));
+
+                _messenger.SendMessage(songs.ToList(), Messages.AllSongsLoadedSendToAlbums);
             }
             catch (Exception ex)
             {
