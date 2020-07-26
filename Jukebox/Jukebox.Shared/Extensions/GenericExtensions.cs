@@ -17,5 +17,17 @@ namespace Jukebox.Shared.Extensions
 
             return obs;
         }
+
+        public static ObservableCollection<AlbumViewModel> ToObservableCollection(this IEnumerable<AlbumViewModel> albums)
+        {
+            var obs = new ObservableCollection<AlbumViewModel>();
+
+            foreach(var album in albums)
+            {
+                obs.Add(album);
+            }
+
+            return obs;
+        }
     }
 }

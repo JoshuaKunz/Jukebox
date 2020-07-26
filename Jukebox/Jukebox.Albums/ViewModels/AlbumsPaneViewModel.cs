@@ -84,8 +84,7 @@ namespace Jukebox.Albums.ViewModels
 
             albumList.ForEach(x => Albums.Add(x));
 
-            //TODO: send message to artists pane with all of the albums
-
+            _messenger.SendMessage(_factory.ConvertAlbumsToArtist(albumList), Messages.AllArtistsLoaded);
 
             albumList = null;
         }

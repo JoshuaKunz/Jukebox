@@ -11,6 +11,8 @@
         xmlns:upv="clr-namespace:Jukebox.Utility.Views;assembly=Jukebox.Utility"
         xmlns:nppv="clr-namespace:Jukebox.NowPlaying.Views;assembly=Jukebox.NowPlaying"
         xmlns:vapv="clr-namespace:Jukebox.ViewAlbum.Views;assembly=Jukebox.ViewAlbum"
+        xmlns:artistsView="clr-namespace:Jukebox.Artists.Views;assembly=Jukebox.Artists"
+        xmlns:viewArtist="clr-namespace:Jukebox.ViewArtist.Views;assembly=Jukebox.ViewArtist"
         mc:Ignorable="d"
         Title="JukeboxView"
         Height="800"
@@ -85,16 +87,12 @@
 
                 <TabItem Header="Artists"
                          Visibility="Collapsed">
-                    <Border Background="Black">
-
-                    </Border>
+                    <artistsView:ArtistsPaneView DataContext="{Binding ArtistsPaneViewModel}"/>
                 </TabItem>
 
                 <TabItem Header="Playlist"
                          Visibility="Collapsed">
-                    <Border Background="White">
 
-                    </Border>
                 </TabItem>
 
                 <TabItem Header="Now Playing"
@@ -105,6 +103,11 @@
                 <TabItem Header="View Album"
                          Visibility="Collapsed">
                     <vapv:ViewAlbumPaneView DataContext="{Binding ViewAlbumPaneViewModel}"/>
+                </TabItem>
+
+                <TabItem Header="View Artist"
+                         Visibility="Collapsed">
+                    <viewArtist:ViewArtistPaneView DataContext="{Binding ViewArtistPaneViewModel}"/>
                 </TabItem>
 
             </TabControl>

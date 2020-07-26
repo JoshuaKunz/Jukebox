@@ -26,6 +26,7 @@
     <ProjectReference Include="..\Jukebox.Songs\Jukebox.Songs.csproj" />
     <ProjectReference Include="..\Jukebox.Utility\Jukebox.Utility.csproj" />
     <ProjectReference Include="..\Jukebox.ViewAlbum\Jukebox.ViewAlbum.csproj" />
+    <ProjectReference Include="..\Jukebox.ViewArtist\Jukebox.ViewArtist.csproj" />
   </ItemGroup>
 
 </Project>
