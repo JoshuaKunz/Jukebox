@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace Jukebox.Shared.Factory
@@ -29,6 +30,11 @@ namespace Jukebox.Shared.Factory
 
             AlbumArtCollection.SharedAlbumArt.TryGetValue(model.Album, out var albumArt);
 
+            if(albumArt == null)
+            {
+                MessageBox.Show($"album art null on song: {model.Title}");
+            }
+
             return new SongViewModel(_messenger)
             {
                 Artist = model.Artist,
@@ -41,7 +47,36 @@ namespace Jukebox.Shared.Factory
             };
         }
 
-        public IEnumerable<SongViewModel> ConvertSongModels(IEnumerable<SongModel> models) => models.Select(ConvertSongModel);
+        public IEnumerable<SongViewModel> ConvertSongModels(IEnumerable<SongModel> models)
+        {
+            List<SongViewModel> songs = new List<SongViewModel>();
+
+            var missingDataCount = 0;
+            var songPathsWithMissingData = new List<string>();
+
+            foreach (var song in models)
+            {
+                if (song.Album == null || song.Title == null || song.Artist == null)
+                {
+                    songPathsWithMissingData.Add(song.Path);
+                    missingDataCount++;
+                    continue;
+                }
+                else
+                {
+                    songs.Add(ConvertSongModel(song));
+                }
+            }
+
+            if (missingDataCount > 0)
+            {
+                var paths = string.Join('\n', songPathsWithMissingData);
+
+                MessageBox.Show($"There were {missingDataCount} song(s) that were missing MP3 metadata and were rejected.\nSong paths are {paths}", "Some songs were not loaded", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            return songs;
+        }
         #endregion
 
         #region Albums
