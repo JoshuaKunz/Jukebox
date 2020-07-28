@@ -15,8 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Jukebox.Images\Jukebox.Images.csproj" />
-    <ProjectReference Include="..\Jukebox.NowPlaying\Jukebox.NowPlaying.csproj" />
-    <ProjectReference Include="..\Jukebox.Utility\Jukebox.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,10 +6,109 @@
              xmlns:local="clr-namespace:Jukebox.Utility.Views"
              xmlns:vm="clr-namespace:Jukebox.Utility.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800"
+             d:DesignHeight="100"
+             d:DesignWidth="1800"
              d:DataContext="{d:DesignInstance vm:UtilityPaneViewModel}">
     <Grid>
+
+        <Image Source="{Binding Song.CoverImage}" Stretch="Fill">
+            <Image.Effect>
+                <BlurEffect Radius="100"/>
+            </Image.Effect>
+        </Image>
+
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Column="0" Source="{Binding Song.CoverImage}"
+                   Margin="15,0,0,5"
+                   Height="95">
+                <Image.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="150"/>
+                </Image.Effect>
+            </Image>
+
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Song.Artist}"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="70"
+                       FontWeight="UltraBold"
+                       Foreground="White"
+                       FontFamily="Chiller"
+                       RenderTransformOrigin="0.5,0.5">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="10" Direction="150"/>
+                </TextBlock.Effect>
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-10"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+
+            <TextBlock Grid.Column="2"
+                       Text="{Binding Song.Title}"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="90"
+                       FontWeight="Thin"
+                       Foreground="White"
+                       Padding="0,0,0,25">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="150"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <TextBlock Grid.Column="3"
+                       Text="{Binding Song.Album}"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="25"
+                       Foreground="White"
+                       FontWeight="UltraLight">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="5"
+                                      Direction="150"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <TextBlock Grid.Column="4"
+                       Text="{Binding Song.Year}"
+                       TextAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       FontSize="12"
+                       Foreground="White"
+                       FontWeight="UltraLight">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="5"
+                                      Direction="150"/>
+                </TextBlock.Effect>
+            </TextBlock>
+
+            <Image Grid.Column="5" Source="{Binding Song.CoverImage}"
+                   Margin="15,0,10,5"
+                   Height="95">
+                <Image.Effect>
+                    <DropShadowEffect ShadowDepth="10"
+                                      Direction="150"/>
+                </Image.Effect>
+            </Image>
+        </Grid>
 
     </Grid>
 </UserControl>

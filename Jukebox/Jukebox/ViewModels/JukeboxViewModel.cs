@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using Jukebox.Albums.ViewModels;
 using Jukebox.Artists.ViewModels;
 using Jukebox.NowPlaying.ViewModels;
+using Jukebox.Playlist.ViewModels;
 using Jukebox.Shared.Classes;
 using Jukebox.Shared.Extensions;
 using Jukebox.Shared.ViewModels;
@@ -15,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Permissions;
 using System.Windows.Input;
 
 namespace Jukebox.ViewModels
@@ -31,6 +33,7 @@ namespace Jukebox.ViewModels
             ViewAlbumPaneViewModel viewAlbumPaneViewModel,
             ArtistsPaneViewModel artistsPaneViewModel,
             ViewArtistPaneViewModel viewArtistPaneViewModel,
+            PlaylistPaneViewModel playlistPaneViewModel,
             IMessenger messenger,
             RecordPlayer player)
         {
@@ -41,6 +44,7 @@ namespace Jukebox.ViewModels
             UtilityPaneViewModel = utilityPaneViewModel ?? throw new ArgumentNullException(nameof(utilityPaneViewModel));
             ViewAlbumPaneViewModel = viewAlbumPaneViewModel ?? throw new ArgumentNullException(nameof(viewAlbumPaneViewModel));
             ViewArtistPaneViewModel = viewArtistPaneViewModel ?? throw new ArgumentNullException(nameof(viewArtistPaneViewModel));
+            PlaylistPaneViewModel = playlistPaneViewModel ?? throw new ArgumentNullException(nameof(playlistPaneViewModel));
 
             _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
             Player = player ?? throw new ArgumentNullException(nameof(player));
@@ -59,12 +63,12 @@ namespace Jukebox.ViewModels
         #region Properties
         public RecordPlayer Player { get; }
 
-        public ObservableCollection<SongViewModel> PlayList
-        {
-            get => _playList;
-            set => Set(ref _playList, value);
-        }
-        private ObservableCollection<SongViewModel> _playList = new ObservableCollection<SongViewModel>();
+        //public ObservableCollection<SongViewModel> PlayList
+        //{
+        //    get => _playList;
+        //    set => Set(ref _playList, value);
+        //}
+        //private ObservableCollection<SongViewModel> _playList = new ObservableCollection<SongViewModel>();
 
         public int SelectedIndex
         {
@@ -82,6 +86,7 @@ namespace Jukebox.ViewModels
         public UtilityPaneViewModel UtilityPaneViewModel { get; }
         public ViewAlbumPaneViewModel ViewAlbumPaneViewModel { get; }
         public ViewArtistPaneViewModel ViewArtistPaneViewModel { get; }
+        public PlaylistPaneViewModel PlaylistPaneViewModel { get; }
         #endregion
 
         #region Commands
@@ -95,13 +100,9 @@ namespace Jukebox.ViewModels
 
         #region Command Methods
         private void SongsButtonCommandMethod() => SelectedIndex = 0;
-
         private void AlbumsButtonCommandMethod() => SelectedIndex = 1;
-
         private void ArtistsButtonCommandMethod() => SelectedIndex = 2;
-
         private void PlaylistButtonCommandMethod() => SelectedIndex = 3;
-
         private void NowPlayingButtonCommandMethod() => SelectedIndex = 4;
         #endregion
 

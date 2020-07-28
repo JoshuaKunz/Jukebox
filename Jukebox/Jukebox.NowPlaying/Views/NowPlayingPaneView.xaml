@@ -11,5 +11,50 @@
              d:DataContext="{d:DesignInstance vm:NowPlayingPaneViewModel}">
     <Grid>
 
+        <Canvas HorizontalAlignment="Center">
+
+
+            <Ellipse Width="600"
+                     Height="600"
+                     Canvas.Left="-350"
+                     Canvas.Top="175"
+                     RenderTransformOrigin=".5, .5">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding Song.CoverImage}"/>
+                </Ellipse.Fill>
+
+                <Ellipse.RenderTransform>
+                    <RotateTransform x:Name="CDRotation" Angle="0"/>
+                </Ellipse.RenderTransform>
+
+                <Ellipse.Triggers>
+                    <EventTrigger RoutedEvent="Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="CDRotation"
+                                                 Storyboard.TargetProperty="Angle"
+                                                 From="0"
+                                                 To="360"
+                                                 Duration="0:0:1"
+                                                 BeginTime="0:0:0"
+                                                 RepeatBehavior="Forever"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Ellipse.Triggers>
+
+            </Ellipse>
+
+            <Image Source="{Binding Song.CoverImage}"
+                   Height="650"
+                   Canvas.Left="-650"
+                   Canvas.Top="150"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+                <Image.Effect>
+                    <DropShadowEffect ShadowDepth="100" Opacity=".5"/>
+                </Image.Effect>
+            </Image>
+        </Canvas>
     </Grid>
 </UserControl>

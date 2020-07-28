@@ -13,6 +13,7 @@
         xmlns:vapv="clr-namespace:Jukebox.ViewAlbum.Views;assembly=Jukebox.ViewAlbum"
         xmlns:artistsView="clr-namespace:Jukebox.Artists.Views;assembly=Jukebox.Artists"
         xmlns:viewArtist="clr-namespace:Jukebox.ViewArtist.Views;assembly=Jukebox.ViewArtist"
+        xmlns:playlistView="clr-namespace:Jukebox.Playlist.Views;assembly=Jukebox.Playlist"
         mc:Ignorable="d"
         Title="JukeboxView"
         Height="800"
@@ -38,6 +39,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
+
             <StackPanel Grid.Row="0"
                         Grid.Column="0"
                         Width="200">
@@ -46,6 +48,7 @@
                 <b:MenuButton Title="Songs"
                               Width="Auto"
                               Height="100"
+                              Margin="5,50,0,75"
                               Command="{Binding SongsButtonCommand}"/>
 
                 <b:MenuButton Title="Albums"
@@ -70,7 +73,7 @@
             </StackPanel>
 
             <TabControl Grid.Row="0"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Background="Transparent"
                         BorderBrush="Transparent"
                         SelectedIndex="{Binding SelectedIndex}">
@@ -92,7 +95,7 @@
 
                 <TabItem Header="Playlist"
                          Visibility="Collapsed">
-
+                    <playlistView:PlaylistPaneView DataContext="{Binding PlaylistPaneViewModel}"/>
                 </TabItem>
 
                 <TabItem Header="Now Playing"

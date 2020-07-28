@@ -13,10 +13,6 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Hidden"
                       PanningMode="VerticalOnly">
-            <!--<ScrollViewer.Background>
-                <ImageBrush ImageSource="{StaticResource PlayBtnDrawingImageKey}"/>
-            </ScrollViewer.Background>-->
-
 
             <WrapPanel Orientation="Horizontal">
                 <ItemsControl ItemsSource="{Binding Songs}">

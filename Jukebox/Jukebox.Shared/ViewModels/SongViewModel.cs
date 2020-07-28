@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Jukebox.Shared.Classes;
+using Jukebox.Shared.Extensions;
 
 namespace Jukebox.Shared.ViewModels
 {
@@ -21,9 +22,6 @@ namespace Jukebox.Shared.ViewModels
             _messenger = messenger ?? throw new ArgumentNullException(nameof(messenger));
 
             AddToPlaylistCommand = new RelayCommand(AddToPlaylistCommandMethod);
-
-            GotFocusCommand = new RelayCommand(GotFocusCommandMethod);
-            LostFocusCommand = new RelayCommand(LostFocusCommandMethod);
         }
 
         #region Properties
@@ -91,23 +89,10 @@ namespace Jukebox.Shared.ViewModels
         public ICommand GotFocusCommand { get; set; }
         #endregion
 
-        #region Methods
-        public void GotFocusCommandMethod()
-        {
-            PlayButtonVisability = Visibility.Visible;
-        }
-
-        public void LostFocusCommandMethod()
-        {
-            PlayButtonVisability = Visibility.Collapsed;
-        }
-        #endregion
-
         #region Command Methods
         public void AddToPlaylistCommandMethod()
         {
-            //Send message to the playlist adding this song.
-            _messenger.Send(this, Messages.AddSongToPlaylist);
+            _messenger.SendMessage(this, Messages.AddSongToPlaylist);
         }
         #endregion
     }

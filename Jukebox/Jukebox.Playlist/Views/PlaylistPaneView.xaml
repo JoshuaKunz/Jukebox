@@ -4,10 +4,55 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:Jukebox.Playlist.Views"
+             xmlns:vm="clr-namespace:Jukebox.Playlist.ViewModels"
+             xmlns:rowView="clr-namespace:Jukebox.Playlist.Views"
              mc:Ignorable="d"
              d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignWidth="800"
+             FontSize="20"
+             d:DataContext="{d:DesignInstance vm:PlaylistPaneViewModel}">
     <Grid>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Margin="0,0,0,20">
+            <TextBlock Text="Playlist"
+                       Foreground="White"
+                       FontSize="60"
+                       FontWeight="UltraBold"
+                       FontFamily="Chiller"
+                       HorizontalAlignment="Center"
+                       Margin="0,0,255,0">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="30"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1"
+                      PanningMode="VerticalOnly"
+                      VerticalScrollBarVisibility="Hidden">
+
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding Songs}">
+                    <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <rowView:PlaylistRowView Height="150"
+                                                         Margin="0,0,0,100"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+            </StackPanel>
+
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -14,10 +14,6 @@
         <ScrollViewer PanningMode="VerticalOnly"
                       VerticalScrollBarVisibility="Hidden">
 
-            <ScrollViewer.Background>
-                <ImageBrush ImageSource="{StaticResource MetBlackWhiteImageKey}"/>
-            </ScrollViewer.Background>
-
             <WrapPanel>
                 <ItemsControl ItemsSource="{Binding Artists}">
                     <ItemsControl.ItemTemplate>

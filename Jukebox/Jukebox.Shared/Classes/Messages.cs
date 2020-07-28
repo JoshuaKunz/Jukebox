@@ -9,10 +9,14 @@
 
         public static readonly string SendSongsToViewAlbum = nameof(SendSongsToViewAlbum);
 
-        //public static readonly string SendAlbumsToArtists = nameof(SendAlbumsToArtists);
-
         public static readonly string AllArtistsLoaded = nameof(AllArtistsLoaded);
 
         public static readonly string ViewArtistAlbums = nameof(ViewArtistAlbums);
+
+        public static readonly string PlaySong = nameof(PlaySong);
+
+        public static readonly string PlayNextSong = nameof(PlayNextSong);
+
+        public static readonly string SendSongToUtility = nameof(SendSongToUtility);
     }
 }
