@@ -2,6 +2,7 @@
 
 ## How to use this app:
 
+* This app will look in the Music folder for MP3 files recursively.
 * You must use MP3 files, the algorithms use the metadata from the MP3 files to collect the Images, and other song/album data.
 * To get the MP3 metadata easily, just open up Groove Music and edit your MP3 files from there.
 * You must have the .NET Core 3.1 runtime installed
