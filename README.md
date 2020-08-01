@@ -1,7 +1,7 @@
 # Welcome to My Jukebox Repo
 
 ## Demonstration video
-![YouTube video Link](https://www.youtube.com/watch?v=Qw59kv97ofw)
+[![](http://img.youtube.com/vi/Qw59kv97ofw/0.jpg)](http://www.youtube.com/watch?v=Qw59kv97ofw "Jukebox Demo")
 
 ## How to use this app:
 
