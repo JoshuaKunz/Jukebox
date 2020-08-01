@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+# Welcome to My Jukebox Repo
 
-You can use the [editor on GitHub](https://github.com/JoshuaKunz/Jukebox/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## Demonstration video
+[![](http://img.youtube.com/vi/Qw59kv97ofw/0.jpg)](http://www.youtube.com/watch?v=Qw59kv97ofw "Jukebox Demo")
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## How to use this application
 
-### Markdown
+* This app will look in the Music folder for MP3 files recursively.
+* You must use MP3 files, the algorithms use the metadata from the MP3 files to collect the Images, and other song/album data.
+* To get the MP3 metadata easily, just open up Groove Music and edit your MP3 files from there.
+* You must have the .NET Core 3.1 runtime installed
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Contributors
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/JoshuaKunz/Jukebox/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+* Feel free to request to become a contributor, this is a free application for people who want to turn any Windows machine into a home-made Jukebox
